@@ -12,7 +12,9 @@ services:
     ports:
       - 6000:1433
     volumes:
-      - ./App_Data:/var/opt/mssql/host_data/${DB_DIRECTORY}
+      - type: bind
+        target: /var/opt/mssql/host_data/${DB_DIRECTORY}:Z,U
+        source: ./App_Data
     image: optimizely-dxf/db
   web:
     depends_on:
